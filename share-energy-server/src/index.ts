@@ -2,6 +2,10 @@ import express from 'express';
 import routes from './routes';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { populateDb } from './scripts/populate';
+
+
+populateDb();
 
 dotenv.config();
 
@@ -17,6 +21,6 @@ app.get('/', (req, res) => {
 
 app.use(routes);
 
-app.listen(8080, () => {
-  console.log('Example app listening on port 3000!');
+app.listen(8080, "0.0.0.0", () => {
+  console.log('Example app listening on port 8080!!!!!!');
 });

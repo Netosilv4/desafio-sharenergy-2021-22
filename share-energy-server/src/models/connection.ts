@@ -1,12 +1,9 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-const URI = process.env.MONGO_URI || 'mongodb://localhost/test';
+const URI = 'mongodb://root:root@db:27017/share-energy?authSource=admin';
 
 mongoose.connect(
     URI
 ).catch(err => { console.log(err) })
 
-export default mongoose;    
+export default mongoose;
