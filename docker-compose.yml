@@ -1,0 +1,40 @@
+version: "3"
+
+services: 
+  client:
+    build: 
+      context: ./share-energy-client
+      dockerfile: Dockerfile
+    ports: 
+      - "3000:3000"
+    volumes:
+      - ./share-energy-client:/app/share-energy-client
+    environment:
+      - NODE_ENV=development
+
+  server:
+    container_name: share-energy-server
+    build:
+      context: ./share-energy-server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./share-energy-server:/server/share-energy-server
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: mongo:4.2
+    ports:
+      - "27017:27017"
+    restart: always
+    
+    environment:
+      - NODE_ENV=development
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=share-energy
