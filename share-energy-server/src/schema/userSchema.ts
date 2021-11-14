@@ -1,15 +1,18 @@
 import { UserPowerPlants } from "../interfaces";
 import mongoose from "../models/connection";
 
-export interface UserInterface extends mongoose.Document {
-    numeroCliente: number;
-    nomeCliente: string;
-    usuario: string;
-    senha: string;
-    email: string;
-    tipo: string;
-    usinas: UserPowerPlants[]
-    token: string;
+export interface User {
+  numeroCliente: number;
+  nomeCliente: string;
+  usuario: string;
+  senha: string;
+  email: string;
+  tipo: string;
+  usinas: UserPowerPlants[]
+}
+
+export interface UserInterface extends mongoose.Document, User {
+  token: string;
 }
 
 const userSchema = new mongoose.Schema({
