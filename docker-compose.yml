@@ -8,7 +8,8 @@ services:
     ports: 
       - "3000:3000"
     volumes:
-      - ./share-energy-client:/app/share-energy-client
+      - /app/node_modules
+      - ./share-energy-client:/app
     environment:
       - NODE_ENV=development
 
@@ -20,7 +21,8 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./share-energy-server:/server/share-energy-server
+      - /server/node_modules
+      - ./share-energy-server:/server
     environment:
       - NODE_ENV=development
     depends_on:
